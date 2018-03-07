@@ -286,6 +286,9 @@ def add_arguments(parser):
   parser.add_argument("--num_intra_threads", type=int, default=0,
                       help="number of intra_op_parallelism_threads")
 
+  parser.add_argument('--src_vocab_file', default=None)
+  parser.add_argument('--tgt_vocab_file', default=None)
+
 
 def create_hparams(flags):
   """Create training hparams."""
@@ -367,6 +370,10 @@ def create_hparams(flags):
       avg_ckpts=flags.avg_ckpts,
       num_intra_threads=flags.num_intra_threads,
       num_inter_threads=flags.num_inter_threads,
+
+      # Kory Added to Handle Flags for NMC
+      src_vocab_file=flags.src_vocab_file,
+      tgt_vocab_file=flags.tgt_vocab_file,
   )
 
 
