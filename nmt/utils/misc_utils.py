@@ -160,7 +160,7 @@ def format_text(words):
   return b" ".join(words)
 
 
-def format_bpe_text(symbols, delimiter=b"@@"):
+def format_bpe_text(symbols, delimiter=b"\xe2\x96\x81"):
   """Convert a sequence of bpe words into sentence."""
   words = []
   word = b""
@@ -168,13 +168,20 @@ def format_bpe_text(symbols, delimiter=b"@@"):
     symbols = symbols.encode()
   delimiter_len = len(delimiter)
   for symbol in symbols:
-    if len(symbol) >= delimiter_len and symbol[-delimiter_len:] == delimiter:
-      word += symbol[:-delimiter_len]
+    # print(symbol)
+    # if len(symbol) >= delimiter_len and symbol[-delimiter_len:] == delimiter:
+    if len(symbol) >= delimiter_len and symbol[:len(delimiter)] == delimiter:
+      # word += symbol[delimiter_len:]
+      words.append(b" ")
+      words.append(symbol[delimiter_len:])
     else:  # end of a word
-      word += symbol
-      words.append(word)
+      # word += symbol
+      words.append(symbol)
       word = b""
-  return b" ".join(words)
+  # remove that bad BPE starting point, if it exists inside of the text generated
+  if words[:3] == [b' ', b'b', b"'"]:
+    words = words[3:]
+  return b"".join(words)
 
 
 def format_spm_text(symbols):
