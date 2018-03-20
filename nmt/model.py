@@ -170,11 +170,11 @@ class BaseModel(object):
     self.saver = tf.train.Saver(
         tf.global_variables(), max_to_keep=hparams.num_keep_ckpts)
 
-    # Print trainable variables
-    utils.print_out("# Trainable variables")
-    for param in params:
-      utils.print_out("  %s, %s, %s" % (param.name, str(param.get_shape()),
-                                        param.op.device))
+    ## Print trainable variables
+    # utils.print_out("# Trainable variables")
+    # for param in params:
+    #   utils.print_out("  %s, %s, %s" % (param.name, str(param.get_shape()),
+    #                                     param.op.device))
 
   def _get_learning_rate_warmup(self, hparams):
     """Get learning rate warmup."""

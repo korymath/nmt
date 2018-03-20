@@ -543,7 +543,7 @@ def create_or_load_hparams(
       utils.save_hparams(getattr(hparams, "best_" + metric + "_dir"), hparams)
 
   # Print HParams
-  utils.print_hparams(hparams)
+  # utils.print_hparams(hparams)
   return hparams
 
 
