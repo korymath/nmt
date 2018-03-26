@@ -141,8 +141,8 @@ def get_config_proto(log_device_placement=False, allow_soft_placement=True,
   config_proto = tf.ConfigProto(
       log_device_placement=log_device_placement,
       allow_soft_placement=allow_soft_placement)
-  config_proto.gpu_options.allow_growth = True
-  config_proto.gpu_options.per_process_gpu_memory_fraction = 0.8
+  # config_proto.gpu_options.allow_growth = True
+  # config_proto.gpu_options.per_process_gpu_memory_fraction = 0.8
 
   # CPU threads options
   if num_intra_threads:
